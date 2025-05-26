@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập</title>
+    <link rel="stylesheet" href="dangnhap.css">
+</head>
+<body>
+<div class="khung_form">
+    <h2>Đăng Nhập</h2>
+    <div class="input-group">
+        <input type="text" name="ten_dang_nhap" id="ten_dang_nhap" placeholder=" " required minlength="3">
+        <label for="ten_dang_nhap">Tên đăng nhập</label>
+        <span id="usertb" class="error"></span>
+    </div>
+    <div class="input-group">
+        <input type="password" name="mat_khau" id="mat_khau" placeholder=" " required minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+        <label for="mat_khau">Mật khẩu</label>
+        <span id="passtb" class="error"></span>
+    </div>
+    <button onclick="m1()" type="button" id="nut_dang_nhap">Đăng Nhập</button>
+</div>
+<script src="dangnhap.js"></script>
+</body>
+</html>

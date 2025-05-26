@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Khám phá các điểm đến nổi bật tại Thừa Thiên Huế với danh lam thắng cảnh, di tích lịch sử và bãi biển thơ mộng, thanh menu cố định không khoảng trắng.">
+    <link rel="icon" type="image/png" href="logo5.png">
+    <title>Điểm Đến Thừa Thiên Huế</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Feedback Modal -->
+    <div class="feedback-modal">
+        <div class="feedback-modal-content">
+            <span class="feedback-modal-close">×</span>
+            <h2 class="text-2xl font-semibold mb-6 text-gray-800 text-center">Gửi Phản Hồi</h2>
+            <form class="feedback-form">
+                <div>
+                    <label for="feedback-name"><span class="text-gray-600">👤</span> Tên</label>
+                    <input type="text" id="feedback-name" placeholder="Nhập tên của bạn" required>
+                </div>
+                <div>
+                    <label for="feedback-email"><span class="text-gray-600">📧</span> Email</label>
+                    <input type="email" id="feedback-email" placeholder="Nhập email của bạn" required>
+                    <div id="email-error" class="error-message">Vui lòng nhập email hợp lệ (ví dụ: example@domain.com)</div>
+                </div>
+                <div>
+                    <label for="feedback-message"><span class="text-gray-600">✍️</span> Nội dung phản hồi</label>
+                    <textarea id="feedback-message" rows="4" placeholder="Nhập nội dung phản hồi" required></textarea>
+                </div>
+                <div class="file-input-wrapper">
+                    <label for="feedback-image"><span class="text-gray-600">📷</span> Tải ảnh lên (tùy chọn)</label>
+                    <input type="file" id="feedback-image" accept="image/*">
+                    <img id="image-preview" class="image-preview" alt="Preview ảnh phản hồi">
+                </div>
+                <button type="submit" id="submit-feedback">Gửi</button>
+            </form>
+        </div>
+    </div>
+    <!-- Toast Notification -->
+    <div class="toast" id="success-toast">Gửi thành công!</div>
+    <header class="tieude">
+        <div class="logo-box">
+            <img src="logo5.png" alt="ViVuWithTeam1 Logo" class="logo">
+            <p class="logo-caption">ViVuWithTeam1</p>
+        </div>
+        <button class="hamburger" aria-label="Toggle menu">☰</button>
+        <nav class="dieuhuong">
+            <div id="div_dieuhuong">
+                <a href="index.html" class="homepage">Trang chủ</a>
+                <ul class="menu">
+                    <li>
+                        <a href="#" aria-haspopup="true" aria-expanded="false">Miền Bắc</a>
+                        <ul class="submenu">
+                            <li><a href="hanoi.html">Hà Nội</a></li>
+                            <li><a href="quangninh.html">Quảng Ninh</a></li>
+                            <li><a href="hagiang.html">Hà Giang</a></li>
+                            <li><a href="haiphong.html">Hải Phòng</a></li>
+                            <li><a href="laocai.html">Lào Cai</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" aria-haspopup="true" aria-expanded="false">Miền Trung</a>
+                        <ul class="submenu">
+                            <li><a href="danang.html">Đà Nẵng</a></li>
+                            <li><a href="hue.html">Thừa Thiên Huế</a></li>
+                            <li><a href="nghean.html">Nghệ An</a></li>
+                            <li><a href="thanhhoa.html">Thanh Hóa</a></li>
+                            <li><a href="quangnam.html">Quảng Nam</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" aria-haspopup="true" aria-expanded="false">Miền Nam</a>
+                        <ul class="submenu">
+                            <li><a href="hochiminh.html">TP. Hồ Chí Minh</a></li>
+                            <li><a href="cantho.html">Cần Thơ</a></li>
+                            <li><a href="binhduong.html">Bình Dương</a></li>
+                            <li><a href="baria.html">Bà Rịa Vũng Tàu</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="ngonngu">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Tìm kiếm điểm đến..." aria-label="Search destinations">
+                <span class="search-icon">🔍</span>
+                <span class="clear-search" title="Xóa tìm kiếm">✖</span>
+            </div>
+            <div id="dangky" onclick="window.location.href='./dangky.html'">Đăng ký</div>
+            <div id="dangnhap" onclick="window.location.href='./dangnhap.html'">Đăng nhập</div>
+            <div class="username-display" id="username-display">
+                Chào, <span id="username"></span>
+            </div>
+            <div id="dangxuat" onclick="m2()">Đăng xuất</div>
+        </div>
+    </header>
+  <div class="filter-section">
+        <span class="filter-tag" data-tag="all">Tất cả</span>
+        <span class="filter-tag" data-tag="Giải Trí">Giải Trí</span>
+        <span class="filter-tag" data-tag="Khám Phá">Khám Phá</span>
+        <span class="filter-tag" data-tag="Mạo Hiểm">Mạo Hiểm</span>
+        <span class="filter-tag" data-tag="Nghỉ Dưỡng">Nghỉ Dưỡng</span>
+         <span class="filter-tag" data-tag="Sinh Thái">Sinh Thái</span>
+         <span class="filter-tag" data-tag="Tâm Linh">Tâm Linh</span>
+         <span class="filter-tag" data-tag="Thể Thao">Thể Thao</span>
+    </div>
+    <div class="container">
+        <div class="no-results">Không tìm thấy kết quả phù hợp.</div>
+        <div class="beach-section">
+            <h2>Danh lam thắng cảnh</h2>
+            <div class="destination-grid">
+                <div class="destination-card" data-tags="Sinh Thái">
+                    <div class="card-image">
+                        <a href="bachha.html"><img src="https://bestbooking.vn/wp-content/uploads/2024/10/snapedit_1729161658448.jpeg" alt="Vườn Quốc Gia Bạch Mã"></a>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Vườn Quốc Gia Bạch Mã</h3>
+                        <p class="card-description">Vườn Quốc Gia Bạch Mã, với rừng nguyên sinh trù phú, thác nước hùng vĩ và hệ sinh thái đa dạng, là điểm đến lý tưởng cho những ai yêu thiên nhiên và đam mê khám phá.</p>
+                        <div class="travel-tags">
+                            <span class="travel-tag">Sinh Thái</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="destination-card" data-tags="Nghỉ Dưỡng Thể Thao">
+                    <div class="card-image">
+                        <a href="damlapan.html"><img src="https://khamphahue.com.vn/Portals/0/Hue24h/VanHoaNgheThuat/Nam2024/Thang03/Khamphahue_DamLapAn_TuyetTinhCocXuHue_3.jpg?ver=2024-03-30-082605-700" alt="Đầm Lập An"></a>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Đầm Lập An</h3>
+                        <p class="card-description">Đầm Lập An, với làn nước trong xanh và khung cảnh huyền ảo được bao bọc bởi núi Bạch Mã, là điểm check-in lý tưởng cho du khách yêu vẻ đẹp thơ mộng của xứ Huế.</p>
+                        <div class="travel-tags">
+                            <span class="travel-tag">Nghỉ Dưỡng</span>
+                            <span class="travel-tag">Thể Thao</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="destination-card" data-tags="Sinh Thái">
+                    <div class="card-image">
+                        <a href="thacdadam.html"><img src="https://i2.ex-cdn.com/crystalbay.com/files/content/2024/09/20/thac-da-dam-2-0924.jpg" alt="Thác Đá Dăm"></a>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Thác Đá Dăm</h3>
+                        <p class="card-description">Ẩn mình giữa núi rừng Dương Hòa, Thác Đá Dăm là điểm đến lý tưởng với dòng nước trong xanh, không khí mát mẻ và vẻ đẹp thiên nhiên nguyên sơ, thu hút những ai yêu thích khám phá.</p>
+                        <div class="travel-tags">
+                            <span class="travel-tag">Sinh Thái</span>
+                            <span class="travel-tag">Thắng Cảnh</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h2>Di tích lịch sử</h2>
+            <div class="destination-grid">
+                <div class="destination-card" data-tags="Tâm Linh">
+                    <div class="card-image">
+                        <a href="dainoihue.html"><img src="https://media-cdn-v2.laodong.vn/storage/newsportal/2023/6/27/1209604/352521770_6922050131.jpg" alt="Đại Nội Huế"></a>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Đại Nội Huế</h3>
+                        <p class="card-description">Nằm bên dòng sông Hương, Đại Nội Huế là di sản văn hóa thế giới, nơi lưu giữ kiến trúc hoàng cung triều Nguyễn và tinh hoa văn hóa Việt Nam.</p>
+                        <div class="travel-tags">
+                            <span class="travel-tag">Tâm Linh</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="destination-card" data-tags="Tâm Linh Sinh Thái">
+                    <div class="card-image">
+                        <a href="nuingubinh.html"><img src="https://khamphadisan.com.vn/wp-content/uploads/2017/02/nui-ngu-binh-khamphadisan-2-e1488164889173.jpg" alt="Núi Ngự Bình"></a>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Núi Ngự Bình</h3>
+                        <p class="card-description">Núi Ngự Bình là biểu tượng của cố đô Huế, nơi du khách có thể hòa mình vào thiên nhiên thơ mộng và khám phá giá trị lịch sử, văn hóa đặc sắc.</p>
+                        <div class="travel-tags">
+                            <span class="travel-tag">Tâm Linh</span>
+                            <span class="travel-tag">Sinh Thái</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="destination-card" data-tags="Khám Phá Tâm Linh">
+                    <div class="card-image">
+                        <a href="langtuduc.html"><img src="https://khamphahue.com.vn/Portals/0/Medias/Nam2022/T10/Khamphahue_LangTamHue_LangVuaTuDuc-daidien.jpg" alt="Lăng Tự Đức"></a>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Lăng Tự Đức và Lăng Minh Mạng</h3>
+                        <p class="card-description">Lăng Tự Đức và Lăng Minh Mạng là hai công trình kiến trúc hoàng triều Nguyễn nổi bật ở Huế, nơi du khách có thể khám phá lịch sử, văn hóa và vẻ đẹp thơ mộng của cố đô.</p>
+                        <div class="travel-tags">
+                            <span class="travel-tag">Khám Phá</span>
+                            <span class="travel-tag">Tâm Linh</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h2>Bãi biển nổi tiếng</h2>
+            <div class="destination-grid">
+                <div class="destination-card" data-tags="Nghỉ Dưỡng">
+                    <div class="card-image">
+                        <a href="bienthuanan.html"><img src="https://baohaiquanvietnam.vn/storage/posts/thuan%20an.jpg" alt="Bãi Biển Thuận An"></a>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Bãi Biển Thuận An</h3>
+                        <p class="card-description">Nằm nơi sông Hương hòa vào biển Đông, Bãi Biển Thuận An là điểm đến hoang sơ với cát trắng mịn, nước biển trong xanh và nét văn hóa làng chài đậm chất Huế.</p>
+                        <div class="travel-tags">
+                            <span class="travel-tag">Nghỉ Dưỡng</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="destination-card" data-tags="Nghỉ Dưỡng">
+                    <div class="card-image">
+                        <a href="vinhthanhhue.html"><img src="https://mia.vn/media/uploads/blog-du-lich/ve-bai-bien-vinh-thanh-xinh-dep-de-tron-cai-nang-oi-a-cua-ngay-he-xu-hue-1637743735.jpg" alt="Bãi Biển Vinh Thanh"></a>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Bãi Biển Vinh Thanh</h3>
+                        <p class="card-description">Ẩn mình bên rừng dương xanh mát, Bãi Biển Vinh Thanh là điểm đến hoang sơ với cát trắng mịn, nước biển trong xanh và nhịp sống giản dị của làng chài.</p>
+                        <div class="travel-tags">
+                            <span class="travel-tag">Nghỉ Dưỡng</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="destination-card" data-tags="Nghỉ Dưỡng">
+                    <div class="card-image">
+                        <a href="biencanhduong.html"><img src="https://laque.vn/wp-content/uploads/2019/06/5.jpg" alt="Bãi Biển Cảnh Dương"></a>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Bãi Biển Cảnh Dương</h3>
+                        <p class="card-description">Bãi Biển Cảnh Dương, với cát trắng mịn, nước biển trong xanh và không khí náo nhiệt, là điểm đến lý tưởng cho những ai yêu biển và đam mê check-in sống ảo.</p>
+                        <div class="travel-tags">
+                            <span class="travel-tag">Nghỉ Dưỡng</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="explore-section">
+            <button class="explore-button" onclick="window.location.href='hue1.html'" aria-label="Chuyển đến trang Điểm Đến Thừa Thiên Huế" data-tooltip="Đi đến trang Điểm Đến Thừa Thiên Huế">
+                <span>✈️</span> Khám Phá thêm về Thừa Thiên Huế
+            </button>
+        </div>
+    </div>
+      <footer id="footer">
+            <div class="lienhe">
+                <div id="div_lienhe">
+                    <div id="div_img">
+                        <img src="logo5.png" alt="ViVuWithTeam1 Logo" class="logo">
+                    </div>
+                    <div id="div_lh">
+                        <div class="contact-header">
+                            <h3>LIÊN HỆ</h3>
+                            <div class="social-links">
+                                <a href="https://www.facebook.com" target="_blank">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
+                                </a>
+                                <a href="https://www.instagram.com" target="_blank">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+                                </a>
+                                <a href="https://www.twitter.com" target="_blank">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg" alt="Twitter">
+                                </a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Địa chỉ: <a href="#">98 Dương Quảng Hàm</a></li>
+                            <li>Hotline: <a href="tel:19001001880">19001001880</a></li>
+                            <li>SĐT: <a href="tel:0385134578">0385.134.578</a></li>
+                            <li>Email: <a href="mailto:VivuWithTeam1@gmail.com">VivuWithTeam1@gmail.com</a></li>
+                            <li>Website: <a href="https://ViVuWithTeam1/">https://ViVuWithTeam1/</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    <div class="scroll-to-top">↑</div>
+    <div class="feedback-btn">✉</div>
+    <script src="main.js"></script>
+</body>
+</html>
