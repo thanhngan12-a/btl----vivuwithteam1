@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Khám phá các điểm đến nổi bật tại Lào Cai với danh lam thắng cảnh và di tích lịch sử, thanh menu cố định không khoảng trắng.">
+    <link rel="icon" type="image/png" href="https://x.ai/favicon.ico">
+    <title>Điểm Đến Lào Cai</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Feedback Modal -->
+    <div class="feedback-modal">
+        <div class="feedback-modal-content">
+            <span class="feedback-modal-close">×</span>
+            <h2 class="text-2xl font-semibold mb-6 text-gray-800 text-center">Gửi Phản Hồi</h2>
+            <form class="feedback-form">
+                <div>
+                    <label for="feedback-name"><span class="text-gray-600">👤</span> Tên</label>
+                    <input type="text" id="feedback-name" placeholder="Nhập tên của bạn" required>
+                </div>
+                <div>
+                    <label for="feedback-email"><span class="text-gray-600">📧</span> Email</label>
+                    <input type="email" id="feedback-email" placeholder="Nhập email của bạn" required>
+                    <div id="email-error" class="error-message">Vui lòng nhập email hợp lệ (ví dụ: example@domain.com)</div>
+                </div>
+                <div>
+                    <label for="feedback-message"><span class="text-gray-600">✍️</span> Nội dung phản hồi</label>
+                    <textarea id="feedback-message" rows="4" placeholder="Nhập nội dung phản hồi" required></textarea>
+                </div>
+                <div class="file-input-wrapper">
+                    <label for="feedback-image"><span class="text-gray-600">📷</span> Tải ảnh lên (tùy chọn)</label>
+                    <input type="file" id="feedback-image" accept="image/*">
+                    <img id="image-preview" class="image-preview" alt="Preview ảnh phản hồi">
+                </div>
+                <button type="submit" id="submit-feedback">Gửi</button>
+            </form>
+        </div>
+    </div>
+    <!-- Toast Notification -->
+    <div class="toast" id="success-toast">Gửi thành công!</div>
+    <header class="tieude">
+        <div class="logo-box">
+            <img src="logo5.png" alt="ViVuWithTeam1 Logo" class="logo">
+            <p class="logo-caption">ViVuWithTeam1</p>
+        </div>
+        <button class="hamburger" aria-label="Toggle menu">☰</button>
+        <nav class="dieuhuong">
+            <div id="div_dieuhuong">
+                <a href="index.html" class="homepage">Trang chủ</a>
+                <ul class="menu">
+                    <li>
+                        <a href="#" aria-haspopup="true" aria-expanded="false">Miền Bắc</a>
+                        <ul class="submenu">
+                            <li><a href="hanoi.html">Hà Nội</a></li>
+                            <li><a href="quangninh.html">Quảng Ninh</a></li>
+                            <li><a href="hagiang.html">Hà Giang</a></li>
+                            <li><a href="haiphong.html">Hải Phòng</a></li>
+                            <li><a href="laocai.html">Lào Cai</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" aria-haspopup="true" aria-expanded="false">Miền Trung</a>
+                        <ul class="submenu">
+                            <li><a href="danang.html">Đà Nẵng</a></li>
+                            <li><a href="hue.html">Thừa Thiên Huế</a></li>
+                            <li><a href="nghean.html">Nghệ An</a></li>
+                            <li><a href="thanhhoa.html">Thanh Hóa</a></li>
+                            <li><a href="quangnam.html">Quảng Nam</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" aria-haspopup="true" aria-expanded="false">Miền Nam</a>
+                        <ul class="submenu">
+                            <li><a href="hochiminh.html">TP. Hồ Chí Minh</a></li>
+                            <li><a href="cantho.html">Cần Thơ</a></li>
+                            <li><a href="binhduong.html">Bình Dương</a></li>
+                            <li><a href="baria.html">Bà Rịa Vũng Tàu</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="ngonngu">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Tìm kiếm điểm đến..." aria-label="Search destinations">
+                <span class="search-icon">🔍</span>
+                <span class="clear-search" title="Xóa tìm kiếm">✖</span>
+            </div>
+            <div id="dangky" onclick="window.location.href='./dangky.html'">Đăng ký</div>
+            <div id="dangnhap" onclick="window.location.href='./dangnhap.html'">Đăng nhập</div>
+            <div class="username-display" id="username-display">
+                Chào, <span id="username"></span>
+            </div>
+            <div id="dangxuat">Đăng xuất</div>
+        </div>
+    </header>
+   <div class="filter-section">
+        <span class="filter-tag" data-tag="all">Tất cả</span>
+        <span class="filter-tag" data-tag="Giải Trí">Giải Trí</span>
+        <span class="filter-tag" data-tag="Khám Phá">Khám Phá</span>
+        <span class="filter-tag" data-tag="Mạo Hiểm">Mạo Hiểm</span>
+        <span class="filter-tag" data-tag="Nghỉ Dưỡng">Nghỉ Dưỡng</span>
+         <span class="filter-tag" data-tag="Sinh Thái">Sinh Thái</span>
+         <span class="filter-tag" data-tag="Tâm Linh">Tâm Linh</span>
+         <span class="filter-tag" data-tag="Thể Thao">Thể Thao</span>
+    </div>
+    <div class="container">
+        <div class="no-results">Không tìm thấy kết quả phù hợp.</div>
+        <div class="beach-section">
+            <h2>Danh lam thắng cảnh</h2>
+            <div class="destination-grid">
+                <div class="destination-card" data-tags="Sinh Thái">
+                    <div class="card-image">
+                        <a href="xayty.html"><img src="https://tourhot24h.vn/wp-content/uploads/2023/08/San-may-Y-Ty.png" alt="Biển mây Xắc Y Tý vào bình minh"></a>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Xắc Y Tý</h3>
+                        <p class="card-description">Nằm trên độ cao 2,000m, <span data-tooltip="Vùng núi săn mây nổi tiếng ở Lào Cai">Xắc Y Tý</span> là thiên đường săn mây, nơi văn hóa <span data-tooltip="Dân tộc nổi tiếng với nhà trình tường">Hà Nhì</span>, Mông, Dao hòa quyện với núi non hùng vĩ và nhà trình tường độc đáo...</p>
+                        <div class="travel-tags">
+                            <span class="travel-tag">Sinh Thái</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="destination-card" data-tags="Mạo Hiểm Thể Thao">
+                  <div class="card-image">
+                        <a href="deoquyho.html"><img src="https://etrip4utravel.s3-ap-southeast-1.amazonaws.com/images/tinymce/2023/05/c755b8ab-920d-4e0d-890f-6aa4c6aea4e9.jpg" alt="Đèo Ô Quy Hồ với mây mù và núi non"></a>
+                    <div class="card-content">
+                        <h3 class="card-title">Ô Quy Hồ</h3>
+                        <p class="card-description">Nằm ở độ cao ~2,000m, <span data-tooltip="Một trong 'tứ đại đỉnh đèo' Việt Nam">Ô Quy Hồ</span> nối Sa Pa và Lai Châu, nổi tiếng với <span data-tooltip="Điểm cao nhất đèo Ô Quy Hồ">Cổng Trời</span>, cảnh núi non, và văn hóa <span data-tooltip="Dân tộc nổi tiếng với thổ cẩm">Mông</span>-Dao...</p>
+                        <div class="travel-tags">
+                            <span class="travel-tag">Mạo Hiểm</span>
+                            <span class="travel-tag">Thể Thao</span>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="destination-card" data-tags="Khám Phá">
+                    <div class="card-image">
+                        <a href="hoathaigiangho.html"><img src="https://i.vietgiaitri.com/2025/2/19/lac-loi-ve-voi-hoa-man-trang-muot-tren-cao-nguyen-bac-ha-f17-7382030.webp" alt="Thung lũng hoa lê trắng muốt tại Thải Giàng Phố, Bắc Hà"></a>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Thải Giàng Phố</h3>
+                        <p class="card-description">Nằm ở Bắc Hà, <span data-tooltip="Thung lũng hoa nổi tiếng Bắc Hà">Thải Giàng Phố</span> mê hoặc du khách với <span data-tooltip="Loài hoa đặc trưng tháng 2–3">hoa lê</span>, mận nở rộ, văn hóa <span data-tooltip="Dân tộc nổi tiếng với nhà sàn">Tày</span>-Mông, và chợ phiên sôi động...</p>
+                        <div class="travel-tags">
+                            <span class="travel-tag">Khám Phá</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h2>Di tích lịch sử</h2>
+            <div class="destination-grid">
+                <div class="destination-card" data-tags="Khám Phá">
+                    <div class="card-image">
+                        <a href="sapa.html"><img src="https://booking.muongthanh.com/upload_images/images/H%60/sa-pa-thi-tran-trong-suong.jpg" alt="Thị trấn Sa Pa trong sương mù buổi sáng"></a>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Thành phố Sa Pa</h3>
+                        <p class="card-description">Nằm ở độ cao 1,500–1,800m, <span data-tooltip="Thị trấn du lịch nổi tiếng ở Lào Cai">Sa Pa</span> là điểm đến với khí hậu mát mẻ, văn hóa <span data-tooltip="Dân tộc nổi tiếng với nhà sàn">Tày</span>-Mông-Dao, núi <span data-tooltip="Đỉnh núi cao nhất Đông Dương">Fansipan</span>, và bản Cát Cát thơ mộng...</p>
+                        <div class="travel-tags">
+                            <span class="travel-tag">Khám Phá</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="destination-card" data-tags="Khám Phá">
+                    <div class="card-image">
+                        <a href="hangtaphin.html"><img src="https://cuongdulich.com/assets/posts/1571739133-sapa_3.jpg" alt="Nhũ đá lấp lánh trong Hang Tả Phìn, Sa Pa"></a>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Hang Tả Phìn</h3>
+                        <p class="card-description">Cách <span data-tooltip="Thị trấn du lịch nổi tiếng Lào Cai">Sa Pa</span> 12 km, <span data-tooltip="Hang động và bản Dao nổi tiếng Sa Pa">Tả Phìn</span> mê hoặc với <span data-tooltip="Hang đá vôi với nhũ đá">hang động</span> nhũ đá, bản Dao, thổ cẩm, và tắm lá thuốc...</p>
+                        <div class="travel-tags">
+                            <span class="travel-tag">Khám Phá</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="explore-section">
+            <button class="explore-button" onclick="window.location.href='laocai1.html'" aria-label="Chuyển đến trang Điểm Đến Lào Cai" data-tooltip="Đi đến trang Điểm Đến Lào Cai">
+                <span>✈️</span> Khám Phá thêm về Lào Cai
+            </button>
+        </div>
+    </div>
+      <footer id="footer">
+            <div class="lienhe">
+                <div id="div_lienhe">
+                    <div id="div_img">
+                        <img src="logo5.png" alt="ViVuWithTeam1 Logo" class="logo">
+                    </div>
+                    <div id="div_lh">
+                        <div class="contact-header">
+                            <h3>LIÊN HỆ</h3>
+                            <div class="social-links">
+                                <a href="https://www.facebook.com" target="_blank">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
+                                </a>
+                                <a href="https://www.instagram.com" target="_blank">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+                                </a>
+                                <a href="https://www.twitter.com" target="_blank">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg" alt="Twitter">
+                                </a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Địa chỉ: <a href="#">98 Dương Quảng Hàm</a></li>
+                            <li>Hotline: <a href="tel:19001001880">19001001880</a></li>
+                            <li>SĐT: <a href="tel:0385134578">0385.134.578</a></li>
+                            <li>Email: <a href="mailto:VivuWithTeam1@gmail.com">VivuWithTeam1@gmail.com</a></li>
+                            <li>Website: <a href="https://ViVuWithTeam1/">https://ViVuWithTeam1/</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    <div class="scroll-to-top">↑</div>
+    <div class="feedback-btn">✉</div>
+    <script src="main.js"></script>
+</body>
+</html>

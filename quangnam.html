@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Khám phá các điểm đến nổi bật tại Quảng Nam với danh lam thắng cảnh, di tích lịch sử và bãi biển tuyệt đẹp, thanh menu cố định không khoảng trắng.">
+    <link rel="icon" type="image/png" href="logo5.png">
+    <title>Điểm Đến Quảng Nam</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Feedback Modal -->
+    <div class="feedback-modal">
+        <div class="feedback-modal-content">
+            <span class="feedback-modal-close">×</span>
+            <h2 class="text-2xl font-semibold mb-6 text-gray-800 text-center">Gửi Phản Hồi</h2>
+            <form class="feedback-form">
+                <div>
+                    <label for="feedback-name"><span class="text-gray-600">👤</span> Tên</label>
+                    <input type="text" id="feedback-name" placeholder="Nhập tên của bạn" required>
+                </div>
+                <div>
+                    <label for="feedback-email"><span class="text-gray-600">📧</span> Email</label>
+                    <input type="email" id="feedback-email" placeholder="Nhập email của bạn" required>
+                    <div id="email-error" class="error-message">Vui lòng nhập email hợp lệ (ví dụ: example@domain.com)</div>
+                </div>
+                <div>
+                    <label for="feedback-message"><span class="text-gray-600">✍️</span> Nội dung phản hồi</label>
+                    <textarea id="feedback-message" rows="4" placeholder="Nhập nội dung phản hồi" required></textarea>
+                </div>
+                <div class="file-input-wrapper">
+                    <label for="feedback-image"><span class="text-gray-600">📷</span> Tải ảnh lên (tùy chọn)</label>
+                    <input type="file" id="feedback-image" accept="image/*">
+                    <img id="image-preview" class="image-preview" alt="Preview ảnh phản hồi">
+                </div>
+                <button type="submit" id="submit-feedback">Gửi</button>
+            </form>
+        </div>
+    </div>
+    <!-- Toast Notification -->
+    <div class="toast" id="success-toast">Gửi thành công!</div>
+    <header class="tieude">
+        <div class="logo-box">
+            <img src="logo5.png" alt="ViVuWithTeam1 Logo" class="logo">
+            <p class="logo-caption">ViVuWithTeam1</p>
+        </div>
+        <button class="hamburger" aria-label="Toggle menu">☰</button>
+        <nav class="dieuhuong">
+            <div id="div_dieuhuong">
+                <a href="index.html" class="homepage">Trang chủ</a>
+                <ul class="menu">
+                    <li>
+                        <a href="#" aria-haspopup="true" aria-expanded="false">Miền Bắc</a>
+                        <ul class="submenu">
+                            <li><a href="hanoi.html">Hà Nội</a></li>
+                            <li><a href="quangninh.html">Quảng Ninh</a></li>
+                            <li><a href="hagiang.html">Hà Giang</a></li>
+                            <li><a href="haiphong.html">Hải Phòng</a></li>
+                            <li><a href="laocai.html">Lào Cai</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" aria-haspopup="true" aria-expanded="false">Miền Trung</a>
+                        <ul class="submenu">
+                            <li><a href="danang.html">Đà Nẵng</a></li>
+                            <li><a href="hue.html">Thừa Thiên Huế</a></li>
+                            <li><a href="nghean.html">Nghệ An</a></li>
+                            <li><a href="thanhhoa.html">Thanh Hóa</a></li>
+                            <li><a href="quangnam.html">Quảng Nam</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" aria-haspopup="true" aria-expanded="false">Miền Nam</a>
+                        <ul class="submenu">
+                            <li><a href="hochiminh.html">TP. Hồ Chí Minh</a></li>
+                            <li><a href="cantho.html">Cần Thơ</a></li>
+                            <li><a href="binhduong.html">Bình Dương</a></li>
+                            <li><a href="baria.html">Bà Rịa Vũng Tàu</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="ngonngu">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Tìm kiếm điểm đến..." aria-label="Search destinations">
+                <span class="search-icon">🔍</span>
+                <span class="clear-search" title="Xóa tìm kiếm">✖</span>
+            </div>
+            <div id="dangky" onclick="window.location.href='./dangky.html'">Đăng ký</div>
+            <div id="dangnhap" onclick="window.location.href='./dangnhap.html'">Đăng nhập</div>
+            <div class="username-display" id="username-display">
+                Chào, <span id="username"></span>
+            </div>
+            <div id="dangxuat" onclick="m2()">Đăng xuất</div>
+        </div>
+    </header>
+   <div class="filter-section">
+        <span class="filter-tag" data-tag="all">Tất cả</span>
+        <span class="filter-tag" data-tag="Giải Trí">Giải Trí</span>
+        <span class="filter-tag" data-tag="Khám Phá">Khám Phá</span>
+        <span class="filter-tag" data-tag="Mạo Hiểm">Mạo Hiểm</span>
+        <span class="filter-tag" data-tag="Nghỉ Dưỡng">Nghỉ Dưỡng</span>
+         <span class="filter-tag" data-tag="Sinh Thái">Sinh Thái</span>
+         <span class="filter-tag" data-tag="Tâm Linh">Tâm Linh</span>
+         <span class="filter-tag" data-tag="Thể Thao">Thể Thao</span>
+    </div>
+    <div class="container">
+        <div class="no-results">Không tìm thấy kết quả phù hợp.</div>
+        <div class="beach-section">
+            <h2>Danh lam thắng cảnh</h2>
+            <div class="destination-grid">
+                <div class="destination-card" data-tags="Khám Phá">
+                    <div class="card-image">
+                        <a href="vuonnhagom.html"><img src="https://theme.hstatic.net/1000382508/1000497609/14/slideshow_1.jpg?v=1616" alt="Vườn Nhà Gốm với không gian làm gốm truyền thống bên sông Thu Bồn"></a>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Vườn Nhà Gốm</h3>
+                        <p class="card-description">Nép mình trong làng gốm Thanh Hà, Vườn Nhà Gốm là điểm đến văn hóa độc đáo của Hội An, nơi lưu giữ nghệ thuật gốm sứ truyền thống qua 5 thế kỷ.</p>
+                        <div class="travel-tags">
+                            <span class="travel-tag">Khám Phá</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="destination-card" data-tags="Sinh Thái">
+                    <div class="card-image">
+                        <a href="congtroidonggiang.html"><img src="https://www.homepaylater.vn/static/d37bf4a1d7edd0f1c4659813a7ee4a7d/214ce/kham_pha_khu_du_lich_cong_troi_dong_giang_1_115d9142d5.webp" alt="Cổng Trời Đông Giang giữa rừng nguyên sinh"></a>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Cổng Trời Đông Giang</h3>
+                        <p class="card-description">Cổng Trời Đông Giang, khu du lịch sinh thái giữa đại ngàn Trường Sơn, mang đến trải nghiệm thiên nhiên hoang sơ, văn hóa dân tộc Cơ Tu và không gian nghỉ dưỡng yên bình.</p>
+                        <div class="travel-tags">
+                            <span class="travel-tag">Sinh Thái</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="destination-card" data-tags="Sinh Thái">
+                    <div class="card-image">
+                        <a href="hophuninh.html"><img src="https://hanhtrinhdulich.vn/wp-content/uploads/2021/12/Ho-Phu-Ninh-Vinh-Ha-Long-phien-ban-mua-nuoc-can-15.jpg" alt="Rừng phòng hộ Hồ Phú Ninh"></a>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Hồ Phú Ninh</h3>
+                        <p class="card-description">Hồ Phú Ninh, khu du lịch sinh thái nổi tiếng với 30 đảo và zipline dài nhất Việt Nam, là hòn ngọc xanh giữa lòng Quảng Nam, lý tưởng cho khám phá và thể thao mạo hiểm.</p>
+                        <div class="travel-tags">
+                            <span class="travel-tag">Sinh Thái</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h2>Di tích lịch sử</h2>
+            <div class="destination-grid">
+                <div class="destination-card" data-tags="Khám Phá">
+                    <div class="card-image">
+                        <a href="thanhdiamyson.html"><img src="https://dulichconvoi.com/wp-content/uploads/2023/02/thanh-dia-my-son-1400x875-1.png" alt="Thánh Địa Mỹ Sơn"></a>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Thánh Địa Mỹ Sơn</h3>
+                        <p class="card-description">Thánh Địa Mỹ Sơn, quần thể đền tháp Chăm cổ kính được UNESCO công nhận là di sản văn hóa thế giới, mang đậm dấu ấn văn hóa và kiến trúc của vương quốc Chăm Pa.</p>
+                        <div class="travel-tags">
+                            <span class="travel-tag">Khám Phá</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="destination-card" data-tags="Giải Trí Khám Phá">
+                    <div class="card-image">
+                        <a href="hoian.html"><img src="https://hoiana.com/wp-content/uploads/2024/12/pho-co-hoi-an-ve-dem-16.webp" alt="Phố cổ Hội An về đêm"></a>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Phố cổ Hội An</h3>
+                        <p class="card-description">Nằm bên dòng sông Thu Bồn thơ mộng, Phố cổ Hội An là viên ngọc quý của Quảng Nam, nơi lưu giữ kiến trúc cổ 300 năm và văn hóa giao thoa Việt–Trung–Nhật, được UNESCO công nhận năm 1999.</p>
+                        <div class="travel-tags">
+                            <span class="travel-tag">Giải Trí</span>
+                            <span class="travel-tag">Khám Phá</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h2>Bãi biển nổi tiếng</h2>
+            <div class="destination-grid">
+                <div class="destination-card" data-tags="Nghỉ Dưỡng">
+                    <div class="card-image">
+                        <a href="bienanbang.html"><img src="https://static.vinwonders.com/2022/03/bien-an-bang-anh-thumb.jpg" alt="Bãi biển An Bàng với cát trắng và nước trong"></a>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Bãi biển An Bàng</h3>
+                        <p class="card-description">Nằm cách phố cổ Hội An chỉ 4 km, Bãi biển An Bàng được ví như thiên đường nghỉ dưỡng với cát trắng mịn, nước biển trong xanh, resort sang trọng và không khí yên bình.</p>
+                        <div class="travel-tags">
+                            <span class="travel-tag">Nghỉ Dưỡng</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="destination-card" data-tags="Nghỉ Dưỡng">
+                    <div class="card-image">
+                        <a href="biencuadai.html"><img src="https://hoiana.com/wp-content/uploads/2025/01/bien-cua-dai-hoi-an-1.webp" alt="Bãi biển Cửa Đại với cát trắng và cửa sông Thu Bồn"></a>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Bãi biển Cửa Đại</h3>
+                        <p class="card-description">Nằm nơi sông Thu Bồn hòa vào biển Đông, Bãi biển Cửa Đại là điểm đến nổi tiếng của Hội An với cát trắng mịn, nước trong xanh, resort cao cấp và sự kết nối hoàn hảo với phố cổ Hội An.</p>
+                        <div class="travel-tags">
+                            <span class="travel-tag">Nghỉ Dưỡng</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="destination-card" data-tags="Nghỉ Dưỡng">
+                    <div class="card-image">
+                        <a href="bientamthanh.html"><img src="https://cdn.vntrip.vn/cam-nang/wp-content/uploads/2018/07/canhdep-daotamhai-vntrip-e1531293640796.jpg" alt="Bãi biển Tam Thanh với cát vàng và làng bích họa"></a>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Bãi biển Tam Thanh</h3>
+                        <p class="card-description">Nằm tại Tam Kỳ, Bãi biển Tam Thanh thu hút du khách với cát vàng óng, nước trong xanh, không gian hoang sơ, làng bích họa độc đáo và văn hóa làng chài đậm chất Quảng Nam.</p>
+                        <div class="travel-tags">
+                            <span class="travel-tag">Nghỉ Dưỡng</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="explore-section">
+            <button class="explore-button" onclick="window.location.href='quangnam1.html'" aria-label="Chuyển đến trang Điểm Đến Quảng Nam" data-tooltip="Đi đến trang Điểm Đến Quảng Nam">
+                <span>✈️</span> Khám Phá thêm về Quảng Nam
+            </button>
+        </div>
+    </div>
+       <footer id="footer">
+            <div class="lienhe">
+                <div id="div_lienhe">
+                    <div id="div_img">
+                        <img src="logo5.png" alt="ViVuWithTeam1 Logo" class="logo">
+                    </div>
+                    <div id="div_lh">
+                        <div class="contact-header">
+                            <h3>LIÊN HỆ</h3>
+                            <div class="social-links">
+                                <a href="https://www.facebook.com" target="_blank">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
+                                </a>
+                                <a href="https://www.instagram.com" target="_blank">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+                                </a>
+                                <a href="https://www.twitter.com" target="_blank">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg" alt="Twitter">
+                                </a>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Địa chỉ: <a href="#">98 Dương Quảng Hàm</a></li>
+                            <li>Hotline: <a href="tel:19001001880">19001001880</a></li>
+                            <li>SĐT: <a href="tel:0385134578">0385.134.578</a></li>
+                            <li>Email: <a href="mailto:VivuWithTeam1@gmail.com">VivuWithTeam1@gmail.com</a></li>
+                            <li>Website: <a href="https://ViVuWithTeam1/">https://ViVuWithTeam1/</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    <div class="scroll-to-top">↑</div>
+    <div class="feedback-btn">✉</div>
+    <script src="main.js"></script>
+</body>
+</html>
